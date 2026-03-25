@@ -1,4 +1,4 @@
-class CreateUserPictures < ActiveRecord::Migration[6.0]
+class CreateUserPictures < ActiveRecord::Migration[7.1]
   def change
     create_table :user_pictures do |t|
       t.references :user, null: false

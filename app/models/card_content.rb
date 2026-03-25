@@ -1,4 +1,4 @@
 class CardContent < ApplicationRecord
-    belongs_to :card, counter_cache: true
-    validates_presence_of :content
+  has_one :card_block, as: :blockable, dependent: :destroy
+  validates_presence_of :content
 end

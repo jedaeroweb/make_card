@@ -1,0 +1,30 @@
+<div class="row">
+  <section id="preview" class="col-12 col-lg-6">
+
+  </section>
+  <section class="col-12 col-lg-6">
+    <div class="card mb-3 shadow-sm" data-controller="collapse-icon">
+      <div
+        class="card-header d-flex justify-content-between align-items-center"
+        role="button"
+        style="cursor: pointer;"
+        data-action="click->collapse-icon#toggle"
+      >
+        <span class="fw-bold">메인</span>
+
+        <span>
+      <i class="bi bi-eye-fill" data-collapse-icon-target="openIcon"></i>
+      <i class="bi bi-eye-slash-fill d-none" data-collapse-icon-target="closeIcon"></i>
+    </span>
+      </div>
+
+      <div class="card-body" data-collapse-icon-target="body">
+        <%= turbo_frame_tag "new_notice" do %>
+    <%= render 'form',:card=>@card %>
+        <% end %>
+      </div>
+    </div>
+  <%= render "notices/form", notice: @notice %>
+  <%= render "galleries/form", gallery: @gallery %>
+  </section>
+</div>

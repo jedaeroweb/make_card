@@ -1,7 +1,8 @@
-class Createintros < ActiveRecord::Migration[7.1]
+class CreateNotices < ActiveRecord::Migration[7.1]
   def change
-    create_table :intros do |t|
+    create_table :notices do |t|
       t.string :title
+      t.integer :title_level
       t.text :content
       t.timestamps
     end

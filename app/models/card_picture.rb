@@ -1,4 +1,4 @@
-class UserPicture < ApplicationRecord
-  belongs_to :user, autosave: true, counter_cache: true
-  mount_uploader :picture, UserPictureUploader
+class CardPicture < ApplicationRecord
+  has_one :card_block, as: :blockable, dependent: :destroy
+  mount_uploader :picture, CardPictureUploader
 end

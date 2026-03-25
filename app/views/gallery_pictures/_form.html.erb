@@ -1,0 +1,19 @@
+<div id="gallery_picture_upload_form">
+  <%= form_with url: gallery_gallery_pictures_path(gallery),
+                method: :post,
+                multipart: true,
+                data: { controller: "gallery-upload" } do |f| %>
+
+    <div id="gallery_upload_errors"></div>
+
+    <div id="gallery_picture_upload_form">
+      <%= render "gallery_pictures/upload_form", gallery: @gallery %>
+    </div>
+
+    <div id="gallery_pictures_list" class="row mt-3">
+      <%= render @gallery.gallery_pictures %>
+    </div>
+
+
+  <% end %>
+</div>

@@ -1,0 +1,9 @@
+<%= turbo_stream.update "gallery_upload_errors", "" %>
+
+<%= turbo_stream.append "gallery_pictures_list" do %>
+  <%= render @created_pictures %>
+<% end %>
+
+<%= turbo_stream.replace "gallery_picture_upload_form" do %>
+  <%= render "gallery_pictures/upload_form", gallery: @gallery %>
+<% end %>

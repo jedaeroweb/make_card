@@ -1,27 +1,30 @@
-class CardsController < ApplicationController
-  before_action :set_card, only: %i[show edit update destroy]
+class NoticesController < ApplicationController
+  before_action :set_notice, only: %i[show edit update destroy]
 
   def index
-    @cards = Card.order(created_at: :desc)
+    @notices = Notice.order(created_at: :desc)
   end
 
   def show
   end
 
   def new
-    @card = Card.new
-
-    @gallery = Gallery.new
     @notice = Notice.new
   end
 
   def create
-    @card = Card.new(card_params)
+    @notice = Notice.new(notice_params)
 
-    if @card.save
-      redirect_to @card, notice: "카드가 생성되었습니다."
+    if @notice.save
+      respond_to do |format|
+        format.html { redirect_to notices_path, notice: "카드가 생성되었습니다." }
+        format.turbo_stream
+      end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render :create, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -29,25 +32,35 @@ class CardsController < ApplicationController
   end
 
   def update
-    if @card.update(card_params)
-      redirect_to @card, notice: "카드가 수정되었습니다."
+    if @notice.update(notice_params)
+      respond_to do |format|
+        format.html { redirect_to notices_path, notice: "카드가 수정되었습니다." }
+        format.turbo_stream
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render :update, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    @card.destroy
-    redirect_to cards_path, notice: "카드가 삭제되었습니다."
+    @notice.destroy
+
+    respond_to do |format|
+      format.html { redirect_to notices_path, notice: "카드가 삭제되었습니다." }
+      format.turbo_stream
+    end
   end
 
   private
 
-  def set_card
-    @card = Card.find(params[:id])
+  def set_notice
+    @notice = Notice.find(params[:id])
   end
 
-  def card_params
-    params.require(:card).permit(:title, :address, :event_time)
+  def notice_params
+    params.require(:notice).permit(:title, :content)
   end
 end

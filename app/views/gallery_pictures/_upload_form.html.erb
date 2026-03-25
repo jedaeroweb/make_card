@@ -1,0 +1,12 @@
+<div class="mb-3">
+  <label class="form-label">이미지 업로드</label>
+  <%= file_field_tag "gallery_pictures[]",
+                     multiple: true,
+                     accept: "image/*",
+                     class: "form-control",
+                     data: {
+                       action: "change->gallery-upload#submit",
+                       gallery_upload_target: "input"
+                     } %>
+  <div class="form-text">여러 장 선택 가능</div>
+</div>

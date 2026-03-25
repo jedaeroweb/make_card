@@ -1,0 +1,2 @@
+module CardContentsHelper
+end

@@ -1,4 +1,4 @@
-class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
+class CreateDeviseToUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
       t.string :email, null:false, limit: 200
@@ -34,14 +34,7 @@ class CreateDeviseToUsers < ActiveRecord::Migration[6.0]
       ## t.string :authentication_token
 
       t.integer :user_pictures_count, null: false, default: 0
-      t.integer :blogs_count, null: false, default: 0
-      t.integer :companies_count, null: false, default: 0
-      t.integer :contacts_count, null: false, default: 0
-      t.integer :questions_count, null: false, default: 0
-      t.integer :answers_count, null: false, default: 0
-      t.integer :talks_count, null: false, default: 0
-      t.integer :markets_count, null: false, default: 0
-      t.integer :jobs_count, null: false, default: 0
+      t.integer :cards_count, null: false, default: 0
 
       t.integer :point, null: false, default: 3000
 

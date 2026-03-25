@@ -1,0 +1,27 @@
+<div class="card mb-3 shadow-sm" data-controller="collapse-icon">
+  <div
+    class="card-header d-flex justify-content-between align-items-center"
+    role="button"
+    style="cursor: pointer;"
+    data-action="click->collapse-icon#toggle"
+  >
+    <span class="fw-bold">갤러리</span>
+
+    <span>
+      <i class="bi bi-eye-fill" data-collapse-icon-target="openIcon"></i>
+      <i class="bi bi-eye-slash-fill d-none" data-collapse-icon-target="closeIcon"></i>
+    </span>
+  </div>
+
+  <div class="card-body" data-collapse-icon-target="body">
+    <%= form_with model: gallery, data: { turbo: true } do |f| %>
+      <div class="mb-3">
+        <%= f.label :title, class: "form-label" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+
+      <%= f.submit "갤러리 저장" %>
+    <% end %>
+    <%= render "gallery_pictures/form", gallery: @gallery %>
+  </div>
+</div>

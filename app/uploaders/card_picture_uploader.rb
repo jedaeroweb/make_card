@@ -1,11 +1,11 @@
-class GalleryPictureUploader < CarrierWave::Uploader::Base
+class CardPictureUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
   #include CarrierWave::MiniMagick
 
   storage :file
 
-  # Override the directory where uploaded files will be stored.
+  # Override the directory where uploaded uploads will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     return "uploads/#{model.class.to_s.underscore}/#{model.id}"
@@ -20,19 +20,19 @@ class GalleryPictureUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
+  # Process uploads as they are uploaded:
   # process :scale => [200, 300]
   #
   def scale(width, height)
     # do something
   end
 
-  # Create different versions of your uploaded files:
+  # Create different versions of your uploaded uploads:
   version :tiny_thumb do
     process resize_to_fill: [50, 50]
   end
 
-  # Create different versions of your uploaded files:
+  # Create different versions of your uploaded uploads:
   version :small_thumb do
     process resize_to_fill: [150, 150]
   end

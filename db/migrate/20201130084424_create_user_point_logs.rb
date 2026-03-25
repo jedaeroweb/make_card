@@ -1,4 +1,4 @@
-class CreateUserPointLogs < ActiveRecord::Migration[6.0]
+class CreateUserPointLogs < ActiveRecord::Migration[7.1]
   def change
     create_table :user_point_logs do |t|
       t.references :user, null: false

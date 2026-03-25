@@ -14,7 +14,7 @@ class UserPictureUploader < CarrierWave::Uploader::Base
     1.byte..3.megabytes
   end
 
-  # Override the directory where uploaded files will be stored.
+  # Override the directory where uploaded uploads will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     upload_dir="#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -30,7 +30,7 @@ class UserPictureUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
+  # Process uploads as they are uploaded:
   # process :scale => [200, 300]
   #
   def scale(width, height)
@@ -41,7 +41,7 @@ class UserPictureUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [30, 30]
   end
 
-  # Create different versions of your uploaded files:
+  # Create different versions of your uploaded uploads:
   version :small_thumb do
     process resize_to_fill: [150, 150]
   end
