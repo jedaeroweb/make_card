@@ -52,23 +52,29 @@ class GalleryPictureUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    return unless original_filename
-
     @safe_filename ||= begin
-                         ext  = File.extname(original_filename)
-                         base = File.basename(original_filename, ext)
+                         source_name =
+                           original_filename.presence ||
+                           file&.filename.presence ||
+                           "file.jpg"
+
+                         ext  = File.extname(source_name)
+                         base = File.basename(source_name, ext)
 
                          normalized =
                            base
                              .unicode_normalize(:nfkd)
                              .encode("ASCII", replace: "", undef: :replace)
                              .gsub(/[^a-zA-Z0-9_-]/, "_")
+                             .gsub(/_+/, "_")
+                             .gsub(/\A_+|_+\z/, "")
                              .downcase
 
                          normalized = "file" if normalized.blank?
+                         ext = ".jpg" if ext.blank?
 
                          if Rails.env.production?
-                           "#{normalized}_#{secure_token}#{ext}"
+                           "#{normalized}_#{secure_token}#{ext.downcase}"
                          else
                            "#{base}#{ext}" # 로컬은 한글 그대로
                          end

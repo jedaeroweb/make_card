@@ -1,0 +1,10 @@
+<!-- _notice.html.erb -->
+<div class="card-block notice mb-3 p-2 border border-info rounded">
+
+  <div id="<%= dom_id(notice) %>">
+    <div id="<%= dom_id(notice, :title) %>">
+      <%= notice.title %>
+    </div>
+    <p><%= notice.content %></p>
+  </div>
+</div>

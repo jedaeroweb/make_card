@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@notice, :title) do %>
+  <div id="<%= dom_id(@notice, :title) %>">
+    <%= @notice.title %>
+  </div>
+<% end %>

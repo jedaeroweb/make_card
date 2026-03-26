@@ -14,7 +14,7 @@
   </div>
 
   <div class="card-body" data-collapse-icon-target="body">
-    <%= form_with model: notice, local: false do |f| %>
+    <%= form_with model: notice do |f| %>
       <% if notice.errors.any? %>
         <div style="color:red; margin-bottom:16px;">
           <h3><%= pluralize(notice.errors.count, "error") %> 발생</h3>

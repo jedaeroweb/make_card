@@ -6,6 +6,8 @@ class CreateCards < ActiveRecord::Migration[7.1]
       t.datetime :event_time
       #   t.string :address
       t.integer :card_blocks_count, null: false, default: 0
+      t.integer :notices_count, null: false, default: 0
+      t.integer :galleries_count, null: false, default: 0
       t.integer :status, null: false, default: 0
       t.datetime :published_at
       t.timestamps

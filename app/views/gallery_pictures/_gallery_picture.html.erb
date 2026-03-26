@@ -18,9 +18,13 @@
 
       <div class="d-grid mt-2">
         <%= button_to "삭제",
-                      gallery_gallery_pictures_path(gallery_picture),
+                      gallery_gallery_picture_path(gallery_picture.gallery, gallery_picture),
                       method: :delete,
-                      form: { data: { turbo_confirm: "이 이미지를 삭제할까요?" } },
+                      form: {
+                        data: {
+                          turbo_confirm: "이 이미지를 삭제할까요?"
+                        }
+                      },
                       class: "btn btn-sm btn-outline-danger" %>
       </div>
     </div>

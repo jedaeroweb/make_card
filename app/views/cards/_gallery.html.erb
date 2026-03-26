@@ -1,0 +1,14 @@
+<div class="card-block gallery mb-3 p-2 border border-success rounded" id="<%= dom_id(gallery) %>">
+  <strong>Gallery:</strong>
+  <div id="<%= dom_id(gallery, :title) %>">
+    <%= gallery.title %>
+  </div>
+
+  <div class="row">
+    <% gallery.gallery_pictures.each do |pic| %>
+      <div class="col-4 mb-2">
+        <%= image_tag pic.picture.url, class: "img-fluid rounded" %>
+      </div>
+    <% end %>
+  </div>
+</div>

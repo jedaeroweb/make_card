@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_24_060230) do
     t.string "title"
     t.datetime "event_time"
     t.integer "card_blocks_count", default: 0, null: false
+    t.integer "notices_count", default: 0, null: false
+    t.integer "galleries_count", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.datetime "published_at"
     t.datetime "created_at", null: false

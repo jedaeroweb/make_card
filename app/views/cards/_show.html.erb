@@ -1,0 +1,9 @@
+<h1><%= @card.title %></h1>
+<p>이벤트 시간: <%= @card.event_time.strftime("%Y-%m-%d %H:%M") %></p>
+
+<div id="card_blocks">
+  <% @card.card_blocks.each do |block| %>
+    <%= render "notice", notice: block.blockable if block.blockable_type == "Notice" %>
+    <%= render "gallery", gallery: block.blockable if block.blockable_type == "Gallery" %>
+  <% end %>
+</div>

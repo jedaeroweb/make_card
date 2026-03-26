@@ -1,0 +1,5 @@
+<%= turbo_stream.replace dom_id(@gallery, :title) do %>
+  <div id="<%= dom_id(@gallery, :title) %>">
+    <%= @gallery.title %>
+  </div>
+<% end %>

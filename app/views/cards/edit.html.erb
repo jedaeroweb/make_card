@@ -1,6 +1,7 @@
-<div class="row">
+<div class="py-5">
+  <div class="row justify-content-center">
   <section id="preview" class="col-12 col-lg-6">
-
+    <%= render 'show', card: @card %>
   </section>
   <section class="col-12 col-lg-6">
     <div class="card mb-3 shadow-sm" data-controller="collapse-icon">
@@ -26,5 +27,7 @@
     </div>
   <%= render "notices/form", notice: @notice %>
   <%= render "galleries/form", gallery: @gallery %>
+
   </section>
+  </div>
 </div>
