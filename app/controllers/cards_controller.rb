@@ -25,8 +25,9 @@ class CardsController < ApplicationController
   def edit
     @card = Card.find(params[:id])
 
-    @gallery = @card.galleries.first || create_gallery_block_for(@card)
     @notice  = @card.notices.first  || create_notice_block_for(@card)
+    @gallery = @card.galleries.first || create_gallery_block_for(@card)
+    @map = @card.maps.first || build_map_block_for(@card)
   end
 
   def update
@@ -54,12 +55,45 @@ class CardsController < ApplicationController
   end
 
   def create_notice_block_for(card)
-    notice = Notice.create!(title: "우리 결혼해요", content: "축하해주세요")
+    raw_text = <<~TEXT
+
+    저희가 오늘에 있기까지 보내주신
+    따뜻한 사랑에 진심으로 감사드립니다.
+
+    저희 두 사람은 여러분의 축복을 받으며
+    진실한 가약을 맺고자 합니다.
+
+    부디 참석하시어 기쁨의 자리를 축복으로
+    더욱 빛내 주시길 바랍니다.
+  TEXT
+
+    content_html = ApplicationController.helpers.simple_format(raw_text)
+
+    notice = Notice.create!(
+      title: "초대합니다",
+      content: content_html,
+      title_color: "#333333",
+      content_color: "#333333"
+    )
+
     card.card_blocks.create!(
       blockable: notice,
       position: next_position(card)
     )
     notice
+  end
+
+  def build_map_block_for(card)
+    map = card.maps.build(
+      title: '오시는 길'
+    )
+
+    card.card_blocks.build(
+      blockable: map,
+      position: next_position(card)
+    )
+
+    map
   end
 
   def next_position(card)
@@ -71,6 +105,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:title, :address, :event_time)
+    params.require(:card).permit(:title, :place, :zipcode, :address, :address_detail, :event_time)
   end
 end

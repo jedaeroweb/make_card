@@ -1,5 +1,9 @@
 <%= turbo_stream.replace dom_id(@gallery, :title) do %>
-  <div id="<%= dom_id(@gallery, :title) %>">
+  <h2 id="<%= dom_id(@gallery, :title) %>" style="
+  <%= "color: #{@gallery.title_color};" if @gallery.title_color.present? %>
+    <%= "font-size: #{@gallery.title_size}px;" if @gallery.title_size.present? %>
+    <%= "text-align: #{@gallery.title_align};" if @gallery.title_align.present? %>
+  ">
     <%= @gallery.title %>
-  </div>
+  </h2>
 <% end %>

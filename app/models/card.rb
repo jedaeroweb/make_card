@@ -16,6 +16,11 @@ class Card < ApplicationRecord
            source: :blockable,
            source_type: "Notice"
 
+  has_many :maps,
+           through: :card_blocks,
+           source: :blockable,
+           source_type: "Map"
+
   private
 
   def event_time_must_be_tomorrow_or_later

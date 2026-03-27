@@ -7,3 +7,7 @@
 <%= turbo_stream.replace "gallery_picture_upload_form" do %>
   <%= render "gallery_pictures/upload_form", gallery: @gallery %>
 <% end %>
+
+<%= turbo_stream.replace dom_id(@gallery, :display_list) do %>
+  <%= render "gallery_pictures/display_list", gallery: @gallery %>
+<% end %>

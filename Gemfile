@@ -35,7 +35,7 @@ gem "jbuilder"
 
 # Windows does not include zoneinfo uploads, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
-
+gem "actiontext"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem 'devise'
@@ -54,9 +54,10 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-apple'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
+gem 'dotenv-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

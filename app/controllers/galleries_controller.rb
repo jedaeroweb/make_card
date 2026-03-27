@@ -61,6 +61,6 @@ class GalleriesController < ApplicationController
   end
 
   def gallery_params
-    params.require(:gallery).permit(:title)
+    params.require(:gallery).permit(:title, :title_size, :title_color, :title_align)
   end
 end

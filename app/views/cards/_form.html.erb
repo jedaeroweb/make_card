@@ -1,7 +1,7 @@
 <%= form_with model: card, data: { turbo_frame: "_top" } do |f| %>
 
       <div class="mb-3">
-        <%= f.label :title, "제목", class: "form-label" %>
+        <%= f.label :title, class: "form-label" %>
         <%= f.text_field :title,
                          class: "form-control form-control-lg #{'is-invalid' if card.errors[:title].any?}",
                          maxlength: 60,
@@ -15,7 +15,7 @@
       </div>
 
       <div class="mb-3">
-        <%= f.label :event_time, "시간", class: "form-label" %>
+        <%= f.label :event_time, class: "form-label" %>
         <%= f.datetime_field :event_time,
                              class: "form-control form-control-lg #{'is-invalid' if card.errors[:event_time].any?}",
                              min: Time.zone.tomorrow.beginning_of_day.strftime("%Y-%m-%dT%H:%M") %>
@@ -26,8 +26,70 @@
           </div>
         <% end %>
       </div>
+      <div class="mb-3">
+      <%= f.label :place, class: "form-label" %>
+      <%= f.text_field :place,
+                   class: "form-control form-control-lg #{'is-invalid' if card.errors[:place].any?}",
+                   maxlength: 60,
+                   placeholder: "행사장명 입력해주세요" %>
+      </div>
+  <div class="mb-3">
+    <%= f.label :address, class: "form-label" %>
+
+
+
+    <div class="input-group mb-3">
+      <%= f.text_field :zipcode,
+                       id: "postCode",
+                       class: "form-control form-control-lg #{'is-invalid' if card.errors[:zipcode].any?}",
+                       maxlength: 60,
+                       placeholder: "우편번호 입력해주세요" %>
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="findAddr();"><%=t(:insert_address) %></button>
+    </div>
+    <%= f.text_field :address,
+                     id: "address",
+                     class: "form-control form-control-lg #{'is-invalid' if card.errors[:address].any?}",
+                     maxlength: 60,
+                     placeholder: "주소를 입력해주세요" %>
+    <%= f.text_field :address_detail,
+                     id: "address_detail",
+                     class: "form-control form-control-lg #{'is-invalid' if card.errors[:address_detail].any?}",
+                     maxlength: 60,
+                     placeholder: "상세주소 입력해주세요" %>
+  </div>
+
 
       <div class="d-flex gap-2">
-        <%= f.submit "저장", class: "btn btn-primary" %>
+        <%= f.submit t(:apply), class: "btn btn-primary" %>
       </div>
 <% end %>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+
+    function findAddr(){
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var jibunAddr = data.jibunAddress; // 지번 주소 변수
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postCode').value = data.zonecode;
+                const address = document.getElementById('address');
+                if (address) {
+                    if(roadAddr !== ''){
+                        address.value = roadAddr;
+                    }
+                    else if(jibunAddr !== ''){
+                        address.value = jibunAddr;
+                    }
+                    address.dispatchEvent(new Event('change'));
+                }
+            }
+        }).open();
+    }
+</script>

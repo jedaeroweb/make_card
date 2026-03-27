@@ -1,0 +1,15 @@
+<div id="<%= dom_id(gallery, :display_list) %>">
+<ul>
+  <% gallery.gallery_pictures.each do |pic| %>
+    <li>
+      <%= link_to pic.picture.url, data: { fancybox: "gallery", caption: "이제 함께 합니다" } do %>
+        <%= image_tag pic.picture.medium_thumb.url,
+                      width: 120,
+                      height: 120,
+                      class: "img-fluid rounded",
+                      alt: "이제 함께 합니다" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+</div>

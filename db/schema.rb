@@ -10,7 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_03_24_060230) do
+ActiveRecord::Schema[7.1].define(version: 2026_03_27_041909) do
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
   create_table "bank_accounts", force: :cascade do |t|
     t.string "title"
     t.boolean "hidden", default: true, null: false
@@ -38,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_24_060230) do
 
   create_table "card_pictures", force: :cascade do |t|
     t.string "picture", null: false
+    t.string "alt"
     t.boolean "enable", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -45,8 +84,12 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_24_060230) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "user_id"
-    t.string "title"
-    t.datetime "event_time"
+    t.string "title", null: false
+    t.datetime "event_time", null: false
+    t.string "place", null: false
+    t.string "zipcode", null: false
+    t.string "address", null: false
+    t.string "address_detail"
     t.integer "card_blocks_count", default: 0, null: false
     t.integer "notices_count", default: 0, null: false
     t.integer "galleries_count", default: 0, null: false
@@ -59,14 +102,27 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_24_060230) do
 
   create_table "galleries", force: :cascade do |t|
     t.string "title"
+    t.string "title_color"
+    t.integer "title_size", default: 18
+    t.string "title_align", default: "center"
     t.integer "gallery_pictures_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "gallery_contents", force: :cascade do |t|
+    t.integer "gallery_id", null: false
+    t.text "content", null: false
+    t.boolean "enable", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gallery_id"], name: "index_gallery_contents_on_gallery_id"
+  end
+
   create_table "gallery_pictures", force: :cascade do |t|
     t.integer "gallery_id", null: false
     t.string "picture", null: false
+    t.string "alt"
     t.boolean "enable", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -114,8 +170,13 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_24_060230) do
 
   create_table "notices", force: :cascade do |t|
     t.string "title"
-    t.integer "title_level"
+    t.string "title_color"
+    t.integer "title_size", default: 18
+    t.string "title_align", default: "center"
     t.text "content"
+    t.string "content_color"
+    t.integer "content_size", default: 16
+    t.string "content_align", default: "center"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -174,4 +235,6 @@ ActiveRecord::Schema[7.1].define(version: 2026_03_24_060230) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end

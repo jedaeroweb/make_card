@@ -551,6 +551,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  actiontext
   asset_sync
   bootsnap
   capistrano
@@ -564,6 +565,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   fog-azure-rm!
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   meta-tags

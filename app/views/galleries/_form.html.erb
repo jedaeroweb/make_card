@@ -16,11 +16,15 @@
   <div class="card-body" data-collapse-icon-target="body">
     <%= form_with model: gallery, local: false do |f| %>
       <div class="mb-3">
-        <%= f.label :title, class: "form-label" %>
-        <%= f.text_field :title, class: "form-control" %>
+        <%= f.label :title, class: "form-label fw-semibold mb-2" %>
+        <%= f.text_field :title,
+                         class: "form-control",
+                         placeholder: "제목을 입력해주세요" %>
       </div>
 
-      <%= f.submit "갤러리 저장" %>
+      <%= render "notices/title_option", f:f %>
+
+      <%= f.submit t(:apply) %>
     <% end %>
     <%= render "gallery_pictures/form", gallery: @gallery %>
   </div>

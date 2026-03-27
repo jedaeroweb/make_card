@@ -1,0 +1,45 @@
+<!-- 제목 스타일 토글 -->
+<div class="mb-4" data-controller="option-toggle">
+  <button
+    class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill"
+    type="button"
+    data-action="click->option-toggle#toggle"
+  >
+    <i class="bi bi-type"></i>
+    <span>제목 스타일</span>
+    <i class="bi bi-chevron-down transition-icon" data-option-toggle-target="icon"></i>
+  </button>
+
+  <div class="d-none mt-3" data-option-toggle-target="panel">
+    <div class="p-3 bg-light rounded border">
+      <div class="row g-2 align-items-end">
+        <div class="col-6 col-md-3">
+          <label class="form-label small text-muted mb-1">크기</label>
+          <div class="input-group">
+            <%= f.number_field :title_size,
+                               class: "form-control",
+                               min: 8,
+                               max: 120,
+                               placeholder: "16" %>
+            <span class="input-group-text">px</span>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-2">
+          <label class="form-label small text-muted mb-1">색상</label>
+          <%= f.color_field :title_color,
+                            class: "form-control form-control-color w-100",
+                            title: "제목 색상" %>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <%= f.label :title_align, "정렬", class: "form-label small text-muted mb-1" %>
+          <%= f.select :title_align,
+                       [["왼쪽", "left"], ["가운데", "center"], ["오른쪽", "right"]],
+                       { selected: f.object.title_align.presence || "left" },
+                       class: "form-select" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

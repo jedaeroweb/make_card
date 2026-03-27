@@ -13,4 +13,7 @@ Rails.application.routes.draw do
     resources :gallery_pictures, only: [:create, :destroy]
   end
   resources :notices
+
+  get "maps/search", to: "maps#search"
+  resources :maps
 end

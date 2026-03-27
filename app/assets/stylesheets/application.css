@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+
+
+
+.notice-editor trix-toolbar .trix-button-group--file-tools {
+    display: none !important;
+}
+
+trix-toolbar .trix-button-group--file-tools {
+    display: none !important;
+}
+
+trix-toolbar .trix-button-group:not(:first-child) {
+    margin-left: 0.5em;
+}
+
+.transition-icon {
+    transition: transform 0.25s ease;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}

@@ -1,1 +1,5 @@
 <%= turbo_stream.remove dom_id(@gallery_picture) %>
+
+<%= turbo_stream.replace dom_id(@gallery, :display_list) do %>
+  <%= render "gallery_pictures/display_list", gallery: @gallery %>
+<% end %>

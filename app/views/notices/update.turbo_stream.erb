@@ -1,5 +1,18 @@
 <%= turbo_stream.replace dom_id(@notice, :title) do %>
-  <div id="<%= dom_id(@notice, :title) %>">
+  <h1 id="<%= dom_id(@notice, :title) %>" style="
+<%= "color: #{@notice.title_color};" if @notice.title_color.present? %>
+  <%= "font-size: #{@notice.title_size}px;" if @notice.title_size.present? %>
+  <%= "text-align: #{@notice.title_align};" if @notice.title_align.present? %>
+">
     <%= @notice.title %>
+  </h1>
+<% end  %>
+<%= turbo_stream.replace dom_id(@notice, :content) do %>
+  <div id="<%= dom_id(@notice, :content) %>"  style="
+  <%= "color: #{@notice.content_color};" if @notice.content_color.present? %>
+    <%= "font-size: #{@notice.content_size}px;" if @notice.content_size.present? %>
+    <%= "text-align: #{@notice.content_align};" if @notice.content_align.present? %>
+  ">
+    <%= @notice.content %>
   </div>
 <% end %>

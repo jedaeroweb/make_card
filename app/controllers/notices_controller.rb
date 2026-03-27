@@ -61,6 +61,6 @@ class NoticesController < ApplicationController
   end
 
   def notice_params
-    params.require(:notice).permit(:title, :content)
+    params.require(:notice).permit(:title, :title_size, :title_color, :title_align, :content, :content_size, :content_color, :content_align)
   end
 end

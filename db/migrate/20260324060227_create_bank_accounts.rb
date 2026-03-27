@@ -1,4 +1,4 @@
-class CreateBackAccounts < ActiveRecord::Migration[7.1]
+class CreateBankAccounts < ActiveRecord::Migration[7.1]
   def change
     create_table :bank_accounts do |t|
       t.string :title
