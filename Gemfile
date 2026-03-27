@@ -39,8 +39,11 @@ gem "actiontext"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 gem 'devise'
+gem 'cancancan'
+gem 'kaminari'
 gem "carrierwave", "~> 3.1"
 gem 'rmagick'
+gem 'nokogiri', '>= 1.18.9'
 gem 'sitemap_generator'
 gem 'meta-tags'
 
@@ -54,7 +57,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-apple'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
-gem 'dotenv-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
