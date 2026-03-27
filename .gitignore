@@ -77,3 +77,5 @@ yarn-debug.log*
 !/app/assets/builds/.keep
 
 /node_modules
+
+/config/master.key
