@@ -1,11 +1,13 @@
-<section style="border:1px solid #ccc;border-radius:30px;padding:10px;">
+<section style="border:1px solid #ccc;border-radius:30px;padding:10px;width:420px">
 <h1><%= @card.title %></h1>
 <p>이벤트 시간: <%= @card.event_time.strftime("%Y-%m-%d %H:%M") %></p>
 
 <div id="card_blocks">
   <% @card.card_blocks.each do |block| %>
+    <%= render "picture", picture: block.blockable if block.blockable_type == "CardPicture" %>
     <%= render "notice", notice: block.blockable if block.blockable_type == "Notice" %>
     <%= render "gallery", gallery: block.blockable if block.blockable_type == "Gallery" %>
+    <%= render "map", map: block.blockable if block.blockable_type == "Map" %>
   <% end %>
 </div>
 </section>

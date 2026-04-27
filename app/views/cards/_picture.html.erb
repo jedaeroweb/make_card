@@ -1,0 +1,9 @@
+<% return unless picture&.picture&.present? %>
+
+<section id="<%= dom_id(picture,:picture_show) %>" class="picture-section" data-aos="fade-up" data-aos-duration="1000" data-aos-offset="150">
+  <%= image_tag picture.picture.large_thumb.url,
+                width: 420,
+                height: 420,
+                class: "img-fluid rounded",
+                alt: "이제 함께 합니다" %>
+</section>

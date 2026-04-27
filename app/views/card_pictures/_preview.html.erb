@@ -1,0 +1,23 @@
+<div id="<%= dom_id(card_picture, :preview) %>" class="mb-3">
+  <% if card_picture.picture.present? %>
+    <div class="p-2">
+      <%= image_tag card_picture.picture.large_thumb.url,
+                    class: "img-fluid",
+                    style: "max-width: 300px; height: auto;",
+                    alt: (card_picture.alt.presence || "업로드 이미지") %>
+    </div>
+    <div class="d-grid mt-2">
+      <%= link_to "삭제",
+                  card_card_picture_path(card, card_picture),
+                  data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "이 이미지를 삭제할까요?"
+                  },
+                  class: "btn btn-sm btn-outline-danger" %>
+    </div>
+  <% else %>
+    <div class="text-muted small border rounded p-3">
+      아직 업로드된 이미지가 없습니다.
+    </div>
+  <% end %>
+</div>

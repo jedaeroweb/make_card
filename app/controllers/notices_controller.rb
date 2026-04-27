@@ -40,7 +40,8 @@ class NoticesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.html { render :edit }
+        format.turbo_stream { render :update, status: :unprocessable_content }
+        format.html { render "cards/edit", status: :unprocessable_content }
       end
     end
   end

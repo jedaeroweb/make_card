@@ -17,7 +17,14 @@ class CardBlock < ApplicationRecord
         when "Gallery"
             card.class.where(id: card.id)
                 .update_all("galleries_count = (SELECT COUNT(*) FROM card_blocks WHERE card_id = #{card.id} AND blockable_type = 'Gallery')")
+        when "Picture"
+        card.class.where(id: card.id)
+            .update_all("card_pictures_count = (SELECT COUNT(*) FROM card_blocks WHERE card_id = #{card.id} AND blockable_type = 'Picture')")
+        when "Map"
+            card.class.where(id: card.id)
+                .update_all("maps_count = (SELECT COUNT(*) FROM card_blocks WHERE card_id = #{card.id} AND blockable_type = 'Map')")
         end
+
     end
 
     def update_card_counters_on_destroy

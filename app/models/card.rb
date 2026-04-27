@@ -6,6 +6,12 @@ class Card < ApplicationRecord
   validates :event_time, presence: true
   validate :event_time_must_be_tomorrow_or_later
 
+
+  has_many :card_pictures,
+           through: :card_blocks,
+           source: :blockable,
+           source_type: "CardPicture"
+
   has_many :galleries,
            through: :card_blocks,
            source: :blockable,

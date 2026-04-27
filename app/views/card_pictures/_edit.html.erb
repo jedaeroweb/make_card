@@ -1,0 +1,21 @@
+<div class="card mb-3 shadow-sm" data-controller="collapse-icon">
+  <div
+    class="card-header d-flex justify-content-between align-items-center"
+    role="button"
+    style="cursor: pointer;"
+    data-action="click->collapse-icon#toggle"
+  >
+    <span class="fw-bold"><%=t(:'activerecord.models.card_picture') %></span>
+
+    <span>
+      <i class="bi bi-eye-fill" data-collapse-icon-target="openIcon"></i>
+      <i class="bi bi-eye-slash-fill d-none" data-collapse-icon-target="closeIcon"></i>
+    </span>
+  </div>
+
+  <div class="card-body" data-collapse-icon-target="body">
+    <%= render "card_pictures/form", card: card, card_picture: card_picture %>
+  </div>
+</div>
+
+

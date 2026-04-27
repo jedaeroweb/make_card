@@ -3,7 +3,6 @@ class MapsController < ApplicationController
 
   def search
     @card =Card.find(params[:card_id])
-    puts @card.address
     render json: KakaoAddressService.search(@card.address)
   rescue => e
     render json: { error: e.message }, status: :unprocessable_entity

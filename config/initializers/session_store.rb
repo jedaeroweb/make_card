@@ -3,7 +3,7 @@ key ='jedaeroweb_card_session'
 if Rails.env.production?
   session_url = 'redis://127.0.0.1:6379/1/session'
   secure = true
-  domain = 'cards.jedaeroweb.co.kr'
+  domain = 'card.jedaeroweb.co.kr'
 
   Rails.application.config.session_store :redis_store,
                                          url: session_url,

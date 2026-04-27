@@ -25,9 +25,15 @@
         <% end %>
       </div>
     </div>
-    <%= render "notices/form", notice: @notice %>
-    <%= render "galleries/form", gallery: @gallery %>
-    <%= render "maps/form", map: @map %>
+    <% @card_blocks.each do |block| %>
+      <%= render "cards/block_form", block: block, card: @card %>
+    <% end %>
+    <div id="default_block_forms">
+      <%= render "card_pictures/edit", card: @card, card_picture: @new_card_picture if @new_card_picture %>
+      <%= render "notices/form", card: @card, notice: @new_notice if @new_notice %>
+      <%= render "galleries/form", card: @card, gallery: @new_gallery if @new_gallery %>
+      <%= render "maps/form", card: @card, map: @new_map if @new_map %>
+    </div>
   </section>
   </div>
 </div>

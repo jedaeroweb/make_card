@@ -23,11 +23,14 @@ class CardsController < ApplicationController
   end
 
   def edit
-    @card = Card.find(params[:id])
+    @card_blocks = @card.card_blocks.includes(:blockable).order(:position)
 
-    @notice  = @card.notices.first  || create_notice_block_for(@card)
-    @gallery = @card.galleries.first || create_gallery_block_for(@card)
-    @map = @card.maps.first || build_map_block_for(@card)
+    existing_types = @card_blocks.map(&:blockable_type)
+
+    @new_card_picture = @card.card_pictures.build unless existing_types.include?("CardPicture")
+    @new_notice       = create_notice_block_for(@card)      unless existing_types.include?("Notice")
+    @new_gallery      = create_gallery_block_for(@card)  unless existing_types.include?("Gallery")
+    @new_map          = @card.maps.build          unless existing_types.include?("Map")
   end
 
   def update
@@ -94,6 +97,17 @@ class CardsController < ApplicationController
     )
 
     map
+  end
+
+  def build_card_picture_block_for(card)
+    card_picture = card.card_pictures.build
+
+    card.card_blocks.build(
+      blockable: card_picture,
+      position: next_position(card)
+    )
+
+    card_picture
   end
 
   def next_position(card)

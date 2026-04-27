@@ -7,3 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+Card.create!(title: "test", event_time: "2026-06-26 12:23:12", place: '결혼식장', zipcode: '1234', address: 'ㄴㅁㅇㅎㅁㄴㅇㅎㄴㅁㅇㅎ')

@@ -1,0 +1,14 @@
+<% case block.blockable_type %>
+<% when "CardPicture" %>
+  <%= render "card_pictures/edit", card: card, card_picture: block.blockable, block: block %>
+
+<% when "Notice" %>
+  <%= render "notices/form", card: card, notice: block.blockable, block: block %>
+
+<% when "Gallery" %>
+  <%= render "galleries/form", card: card, gallery: block.blockable, block: block %>
+
+<% when "Map" %>
+  <%= render "maps/form", card: card, map: block.blockable, block: block %>
+<% end %>
+

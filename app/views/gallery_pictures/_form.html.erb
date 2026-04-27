@@ -1,6 +1,6 @@
 <div id="gallery_picture_upload_section">
   <div id="gallery_pictures_list" class="row mt-3">
-    <%= render @gallery.gallery_pictures %>
+    <%= render gallery.gallery_pictures %>
   </div>
 
   <%= form_with url: gallery_gallery_pictures_path(gallery),
@@ -11,7 +11,7 @@
     <div id="gallery_upload_errors"></div>
 
     <div id="gallery_picture_upload_form">
-      <%= render "gallery_pictures/upload_form", gallery: @gallery %>
+      <%= render "gallery_pictures/upload_form", gallery: gallery %>
     </div>
 
   <% end %>

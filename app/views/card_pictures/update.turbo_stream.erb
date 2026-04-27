@@ -1,0 +1,7 @@
+<%= turbo_stream.replace dom_id(@card_picture, :form_wrapper) do %>
+  <%= render "card_pictures/form", card: @card, card_picture: @card_picture %>
+<% end %>
+
+<%= turbo_stream.replace dom_id(@card_picture, :picture_show) do %>
+  <%= render "cards/picture", card: @card, picture: @card_picture %>
+<% end %>
