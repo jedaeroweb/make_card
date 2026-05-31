@@ -1,4 +1,4 @@
-<div id="<%= dom_id(gallery_picture) %>" class="col-6 col-md-4 col-lg-3 mb-3">
+<div id="<%= dom_id(gallery_picture) %>" class="col-6 col-md-4  mb-3">
   <div class="card h-100 shadow-sm">
     <% if gallery_picture.picture.present? && gallery_picture.picture.url.present? %>
       <%= image_tag gallery_picture.picture.url,
@@ -13,7 +13,20 @@
 
     <div class="card-body p-2">
       <div style="font-size: 11px; color: #666; word-break: break-all;">
-        <%= gallery_picture.picture.url %>
+        <%= form_with url: gallery_gallery_picture_path(gallery_picture.gallery, gallery_picture),
+                      method: :patch do %>
+
+          <div class="input-group mb-3">
+            <%= text_field_tag :alt,
+                               gallery_picture.alt,
+                               class: "form-control",
+                               placeholder: "사진설명" %>
+
+            <%= submit_tag "확인",
+                           class: "btn btn-outline-primary" %>
+          </div>
+
+        <% end %>
       </div>
 
       <div class="d-grid mt-2">

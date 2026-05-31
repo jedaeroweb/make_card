@@ -1,0 +1,14 @@
+<li id="<%= dom_id(gallery_picture) %>">
+  <%= link_to gallery_picture.picture.url,
+              data: {
+                fancybox: "gallery",
+                caption: gallery_picture.alt
+              } do %>
+
+    <%= image_tag gallery_picture.picture.medium_thumb.url,
+                  width: 120,
+                  height: 120,
+                  class: "img-fluid rounded",
+                  alt: gallery_picture.alt %>
+  <% end %>
+</li>

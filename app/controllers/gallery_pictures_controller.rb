@@ -35,6 +35,18 @@ class GalleryPicturesController < ApplicationController
     end
   end
 
+  def update
+    @gallery_picture = GalleryPicture.find(params[:id])
+
+    @gallery_picture.update(
+      alt: params[:alt]
+    )
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   def destroy
     @gallery_picture = @gallery.gallery_pictures.find(params[:id])
     @gallery_picture.destroy

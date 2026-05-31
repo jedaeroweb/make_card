@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :card_contents
   resources :galleries do
-    resources :gallery_pictures, only: [:create, :destroy]
+    resources :gallery_pictures, only: [:create, :update, :destroy]
   end
   resources :notices
 

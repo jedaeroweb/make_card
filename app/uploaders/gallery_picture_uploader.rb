@@ -4,6 +4,8 @@ class GalleryPictureUploader < CarrierWave::Uploader::Base
   #include CarrierWave::MiniMagick
 
   storage :file
+  process convert: "jpg"
+
 
   # Override the directory where uploaded uploads will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -48,7 +50,7 @@ class GalleryPictureUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg png gif webp heic heif]
   end
 
   def filename
