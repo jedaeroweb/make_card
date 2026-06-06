@@ -1,3 +1,3 @@
-<%= turbo_stream.replace dom_id(@gallery_picture) do %>
+<%= turbo_stream.replace dom_id(@gallery_picture,:display_gallery_picture) do %>
   <%= render "gallery_pictures/display_gallery_picture", gallery_picture: @gallery_picture %>
 <% end %>
